@@ -82,16 +82,19 @@
         var name = document.createElement('h4');
         var button = document.createElement('button')
         
+        var strName = orgs[i].name;
+        var strImg = orgs[i].image;
+        var strDesc = orgs[i].description;
         button.innerHTML = "Give";
         button.className = "org-give pull-right align-bottom btn"
         dCol.className = "col-md-4";
         hvrbox.className = "hvrbox";
-        img.setAttribute("src", orgs[i].image);
+        img.setAttribute("src", strImg);
         img.className = "hvrbox-layer_bottom";
         name.className = "name";
-        name.insertAdjacentHTML( 'afterbegin', orgs[i].name );
+        name.insertAdjacentHTML( 'afterbegin', strName );
         text.className = "hvrbox-text";
-        text.insertAdjacentHTML( 'afterbegin', trimText(orgs[i].description) );
+        text.insertAdjacentHTML( 'afterbegin', trimText(strDesc) );
         top.appendChild(text);
         top.appendChild(button);
         top.className = "hvrbox-layer_top";
@@ -100,9 +103,12 @@
         dCol.appendChild(hvrbox);
         gallery.appendChild(dCol);
 
+        
         button.addEventListener("click", function(){
             if (!supports_html5_storage()) {return false};
-            localStorage["id"] = "1";
+            localStorage["name"] = strName;
+            localStorage["description"] = strDesc;
+            localStorage["img"] = strImg;
             window.location.assign("setamount.html");
             return true;
         });
@@ -110,6 +116,16 @@
 
       }
     }
+
+    // function stash(name, description, img) {
+    //   if (!supports_html5_storage()) {return false};
+      
+    //   localStorage["name"] = name;
+
+    //   window.location.assign("setamount.html");
+    //   return true;
+    // }
+
     function supports_html5_storage() {
       try {
         return 'localStorage' in window && window['localStorage'] !== null;
