@@ -1,0 +1,65 @@
+id: id,
+    subId: subId,
+    customerId: customerId,
+    charity: charity,
+    type: type,
+    frequency: frequency,
+    amount: amount,
+    dateStart: dateStart,
+    dateEnd: dateEnd
+
+{
+    "donations": [
+        {
+            "id": "1",
+            "subId": "1",
+            "customerId": "ab",
+            "charity": "UNICEF",
+            "type": "fixed",
+            "frequency": "once",
+            "amount": "$77",
+            "dateStart": new Date();
+        },
+        {
+            "id": "2",
+            "subId": "2",
+            "customerId": "ab",
+            "charity": "American Heart Association",
+            "type": "fixed",
+            "frequency": "once",
+            "amount": "$52",
+            "dateStart": new Date();
+        },
+        {
+            "id": "3",
+            "subId": "3",
+            "customerId": "ab",
+            "charity": "National Park Foundation",
+            "type": "fixed",
+            "frequency": "once",
+            "amount": "$36",
+            "dateStart": new Date();
+        },
+        {
+            "id": "1",
+            "subId": "1",
+            "customerId": "b",
+            "charity": "UNICEF",
+            "type": "fixed",
+            "frequency": "once",
+            "amount": "$80",
+            "dateStart": new Date();
+        },
+        {
+            "id": "1",
+            "subId": "1",
+            "customerId": "c",
+            "charity": "UNICEF",
+            "type": "fixed",
+            "frequency": "once",
+            "amount": "$97",
+            "dateStart": new Date();
+        },
+        
+    ]
+}
