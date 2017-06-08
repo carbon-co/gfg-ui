@@ -194,7 +194,7 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script type="text/javascript">
     var tbody = document.querySelector('#hist');
-    var requestURL = 'http://127.0.0.1:3000/donations?customerId=56c66be5a73e492741507278';
+    var requestURL = 'http://127.0.0.1:3000/donations?customerId=56c66be5a73e492741507279';
     var request = new XMLHttpRequest();
     request.open('GET', requestURL);
     request.responseType = 'json';
@@ -205,8 +205,6 @@
       var hist = request.response;
       showhist(hist);
     }
-
-    'GET localhost:3000/charities?id=id'
 
     function showhist(jsonObj) {
       var trans = jsonObj;
@@ -225,7 +223,7 @@
             console.log(JSON.stringify(req.response));
           let name = req.response.name;
 
-             var tr = document.createElement('tr');
+          var tr = document.createElement('tr');
           var date = document.createElement('td');
           var org = document.createElement('td');
           var amount = document.createElement('td');
