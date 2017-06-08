@@ -229,7 +229,7 @@
           var date = document.createElement('td');
           var org = document.createElement('td');
           var amount = document.createElement('td');
-          date.insertAdjacentHTML( 'afterbegin', Date.parse(donation.dateStart) );
+          date.insertAdjacentHTML( 'afterbegin', dateParse(new Date(donation.dateStart)) );
           org.insertAdjacentHTML( 'afterbegin', name );
           amount.insertAdjacentHTML( 'afterbegin', '$' + donation.amount );
 
@@ -249,6 +249,19 @@
 
       } // end for
     } // end showhist
+
+    function dateParse(date) {
+      return ['Jan.', 'Feb.', 'Mar.', 
+            'Apr.', 'May', 'Jun.',
+            'Jul.', 'Aug.', 'Sep.', 
+            'Oct.', 'Nov.', 'Dec.'][date.getMonth()] + " " +
+            (function (d) { 
+                var s = d.toString(), l = s[s.length-1];
+                return s+(['st','nd','rd'][l-1] || 'th');
+            })(date.getDate()) + ", " +
+            date.getFullYear() + " " +
+            date.getHours() + ":" + ("0" + date.getMinutes()).slice(-2);
+    }
 
     </script>
 
