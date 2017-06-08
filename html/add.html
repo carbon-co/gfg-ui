@@ -78,13 +78,12 @@
         var img = document.createElement('img');
         var top = document.createElement('div');
         var text = document.createElement('div');
-        var id = orgs[i].id;
         var name = document.createElement('h4');
         var button = document.createElement('button')
         
-        var strName = orgs[i].name;
-        var strImg = orgs[i].image;
-        var strDesc = orgs[i].description;
+        let strName = orgs[i].name;
+        let strImg = orgs[i].image;
+        let strDesc = orgs[i].description;
         button.innerHTML = "Give";
         button.className = "org-give pull-right align-bottom btn"
         dCol.className = "col-md-4";
@@ -106,6 +105,7 @@
         
         button.addEventListener("click", function(){
             if (!supports_html5_storage()) {return false};
+           
             localStorage["name"] = strName;
             localStorage["description"] = strDesc;
             localStorage["img"] = strImg;
