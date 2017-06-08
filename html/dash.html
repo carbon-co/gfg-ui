@@ -180,22 +180,8 @@
         <th>Amount</th>
       </tr>
     </thead>
-    <tbody>
-      <tr>
-        <td>7/12/16</td>
-        <td>UNICEF</td>
-        <td>$77</td>
-      </tr>
-      <tr>
-        <td>5/25/16</td>
-        <td>American Heart Association</td>
-        <td>$52</td>
-      </tr>
-      <tr>
-        <td>3/2/16</td>
-        <td>National Park Foundation</td>
-        <td>$36</td>
-      </tr>
+    <tbody id="hist">
+     
     </tbody>
   </table>
       <p style="text-align:center; "><a class="btn btn-lg btn-primary" href="#" role="button" style="align:center; background-color:#0D74AF; font-family: open sans;">View All Past Transactions</a></p>
@@ -205,6 +191,66 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript">
+    var tbody = document.querySelector('#hist');
+    var requestURL = 'http://127.0.0.1:3000/donations?customerId=56c66be5a73e492741507278';
+    var request = new XMLHttpRequest();
+    request.open('GET', requestURL);
+    request.responseType = 'json';
+    request.send();
+    console.log('after sent');
+    
+    request.onload = function() {
+      var hist = request.response;
+      showhist(hist);
+    }
+
+    'GET localhost:3000/charities?id=id'
+
+    function showhist(jsonObj) {
+      var trans = jsonObj;
+      for(let donation of trans) {
+
+        console.log(donation);
+        
+        var reqURL = 'http://127.0.0.1:3000/charities/' + donation.charity;
+        console.log(reqURL);
+        var req = new XMLHttpRequest();
+        req.open('GET', reqURL);
+        req.responseType = 'json';
+        req.send();
+        req.onload = function() {
+          console.log(donation.charity);
+            console.log(JSON.stringify(req.response));
+          let name = req.response.name;
+
+             var tr = document.createElement('tr');
+          var date = document.createElement('td');
+          var org = document.createElement('td');
+          var amount = document.createElement('td');
+          date.insertAdjacentHTML( 'afterbegin', Date.parse(donation.dateStart) );
+          org.insertAdjacentHTML( 'afterbegin', name );
+          amount.insertAdjacentHTML( 'afterbegin', '$' + donation.amount );
+
+          tr.appendChild(date);
+          tr.appendChild(org);
+          tr.appendChild(amount);
+          tbody.appendChild(tr);
+        }
+
+        // console.log('after second req');
+
+          // var name = name.name;
+         
+        // request.onload = function() {
+          
+        // } // end on load
+
+      } // end for
+    } // end showhist
+
+    </script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
   </body>
