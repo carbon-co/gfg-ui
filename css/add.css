@@ -24,3 +24,7 @@ body {
 .navbar-custom .nav-item:hover .nav-link {
     color: #ffffff;
 }
+
+.gallery {
+	margin-top: 60px;
+}

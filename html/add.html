@@ -48,8 +48,44 @@
         <button class="btn btn-default" type="button">Go!</button>
         </span>
       </div><!-- /input-group -->
-
-
+      
+      <div>
+      <!-- /input-group -->
+      <div class="row gallery">
+        
+      </div><!-- /gallery -->
     </div><!-- /.container -->
+    
+
+    <script>
+    var gallery = document.querySelector('.gallery');
+    var requestURL = 'http://127.0.0.1:8000/json/mockorgs.json';
+    var request = new XMLHttpRequest();
+    request.open('GET', requestURL);
+    request.responseType = 'json';
+    request.send();
+    console.log('after sent');
+    request.onload = function() {
+      var orgs = request.response;
+      showorgs(orgs);
+    }
+
+    function showorgs(jsonObj) {
+      var orgs = jsonObj['orgs'];
+      for(i = 0; i < orgs.length; i++) {
+        var dCol = document.createElement('div');
+        var dThumb = document.createElement('div');
+        var a = document.createElement('a');
+        var img = document.createElement('img')
+        var dCap = document.createElement('div');
+        dCol.setAttribute("class", "col-md-4");
+        dThumb.setAttribute("class", "thumbnail");
+        img.setAttribute("src", orgs[i].image);
+        dThumb.appendChild(img);
+        dCol.appendChild(dThumb);
+        gallery.appendChild(dCol);
+      }
+    }
+    </script>
   </body>
 </html>
