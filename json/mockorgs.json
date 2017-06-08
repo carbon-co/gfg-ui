@@ -4,7 +4,7 @@
       "name": "Texas 4000 for Cancer",
       "id": 1,
       "date_joined": "01-01-2017",
-      "description": "Texas 4000 is an organization dedicated to fighting cancer and developing future leaders. Each summer, a team of students from The University of Texas at Austin bikes from Austin, TX to Anchorage, AK on a 70-day journey while spreading the message of cancer prevention along the way. Prior to embarking on the journey, each rider fundraises at least $4,500.",
+      "description": "Texas 4000 is an organization dedicated to fighting cancer and developing future leaders. Each summer, a team of students from The University of Texas at Austin bikes from Austin, TX to Anchorage, AK on a 70-day journey while spreading the message of cancer prevention along the way.",
       "image": "../images/texas4000.jpg"
     },
     {
@@ -82,7 +82,7 @@
       "id": 12,
       "date_joined": "Join our efforts to reduce death caused by heart disease and stroke through education and research.",
       "description": "Dan Jukes",
-      "image": "../images/aha.jpg"
+      "image": "../images/lls.jpg"
     },
     {
       "name": "Paralyzed Veterans of America",
