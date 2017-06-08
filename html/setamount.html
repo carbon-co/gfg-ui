@@ -90,18 +90,20 @@
 
       <form id="donate" name="donate">
         <div class="form-group">
-            <input type="checkbox">
+            <input type="radio" name="type" value="fixed">
             <label for="inputValue">Give a set amount</label>
             <div class="left-inner-addon">
               <span>$</span>
-              <input type="number" class="form-control" id="inputValue" placeholder="10" name="inputValue">
+              <input type="number" class="form-control" id="inputValue" placeholder="10" name="amount">
+              <input type="radio" name="frequency" value="once"> one-time<br>
+              <input type="radio" name="frequency" value="recurring"> monthly
             </div>
         </div>
 
         <!--<h4><center>- OR/AND -</center></h4> -->
 
         <div class="form-group">
-            <input type="checkbox">
+            <input type="radio" name="type" value="cashback">
             <label for="inputRewards">Give a percentage of my rewards</label>
             
             <div class="input-group">
@@ -110,9 +112,13 @@
              
             <div class="right-inner-addon" style="padding-top: 10px">
               <span>%</span>
-              <input type="number" class="form-control" id="inputRewards" placeholder="50" name="inputRewards">
+              <input type="number" class="form-control" id="inputRewards" placeholder="50" name="percent">
+              <input type="radio" name="frequency" value="once"> one-time<br>
+              <input type="radio" name="frequency" value="recurring"> monthly
             </div>
         </div>
+        <input type="hidden" id="customerId" name="customerId" value="56c66be5a73e492741507278">
+        <input type="hidden" id="charity" name="charity" value="B">
         <input class="btn btn-primary pull-right" style="margin-top: 10px;" type="submit" value="Submit">
     </form>
         </div>
@@ -143,6 +149,16 @@
         console.log(desc);
         console.log(img);
 
+        $.ajax({
+            url:'http://localhost:3000/charities?name=' + name,
+            type:'get',
+            success:function(data){
+                var elem = document.getElementById("charity");
+                console.log(`data = ${data[0].id}`);
+                elem.value = data;
+            }
+        });
+
         var info = document.getElementById("org-desc");
         info.insertAdjacentHTML( 'beforeend', desc );
 
@@ -152,6 +168,9 @@
 
     $('#donate').submit(function(e){
         e.preventDefault();
+        // document.getElementById("customerId").value = "";
+        // document.getElementById("charity").value = "";
+
         $.ajax({
             url:'http://localhost:3000/donations',
             type:'post',
