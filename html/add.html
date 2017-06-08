@@ -81,6 +81,7 @@
         var id = orgs[i].id;
         var name = document.createElement('h4');
         var button = document.createElement('button')
+        
         button.innerHTML = "Give";
         button.className = "org-give pull-right align-bottom btn"
         dCol.className = "col-md-4";
@@ -98,6 +99,22 @@
         hvrbox.appendChild(top);
         dCol.appendChild(hvrbox);
         gallery.appendChild(dCol);
+
+        button.addEventListener("click", function(){
+            if (!supports_html5_storage()) {return false};
+            localStorage["id"] = "1";
+            window.location.assign("setamount.html");
+            return true;
+        });
+
+
+      }
+    }
+    function supports_html5_storage() {
+      try {
+        return 'localStorage' in window && window['localStorage'] !== null;
+      } catch (e) {
+        return false;
       }
     }
 

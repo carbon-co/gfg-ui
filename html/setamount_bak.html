@@ -39,7 +39,7 @@
 
       <div class="page-header">
         <h1>Setup Donations</h1>
-        <p class="lead" id="chosen">Choose how you'd like to give to</p>
+        <p class="lead">Choose how you'd like to give to Charity Name</p>
       </div>
       <div class="row">
         <div class="col-md-4">
@@ -84,34 +84,6 @@
 
     </div> <!-- /container -->
 
-    <script type="text/javascript">
-    var requestURL = 'http://127.0.0.1:8000/json/mockorgs.json';
-    var request = new XMLHttpRequest();
-    request.open('GET', requestURL);
-    request.responseType = 'json';
-    request.send();
-    
-    request.onload = function() {
-      var org = request.response;
-      showOrg(org);
-    }
-    //window.onload = showOrg;
-    function supports_html5_storage() {
-      try {
-        return 'localStorage' in window && window['localStorage'] !== null;
-      } catch (e) {
-        return false;
-      }
-    }
-
-    function showOrg(){
-
-        if (!supports_html5_storage()) { return false; }
-        id = localStorage["id"];
-        var label = document.getElementById("chosen");
-        label.insertAdjacentHTML( 'beforeend', trimText(orgs[id].name );
-    }
-    </script>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <!--<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
