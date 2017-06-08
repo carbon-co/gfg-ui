@@ -88,13 +88,13 @@
         <div class="col-md-8">
           <h3>I'd like to...</h3>
 
-      <form>
+      <form id="donate" name="donate">
         <div class="form-group">
             <input type="checkbox">
             <label for="inputValue">Give a set amount</label>
             <div class="left-inner-addon">
               <span>$</span>
-              <input type="number" class="form-control" id="inputValue" placeholder="10">
+              <input type="number" class="form-control" id="inputValue" placeholder="10" name="inputValue">
             </div>
         </div>
 
@@ -110,12 +110,11 @@
              
             <div class="right-inner-addon" style="padding-top: 10px">
               <span>%</span>
-              <input type="number" class="form-control" id="inputRewards" placeholder="50">
+              <input type="number" class="form-control" id="inputRewards" placeholder="50" name="inputRewards">
             </div>
         </div>
-        
+        <input class="btn btn-primary pull-right" style="margin-top: 10px;" type="submit" value="Submit">
     </form>
-    <button type="submit" class="btn btn-primary pull-right" style="margin-top: 10px;" onclick="createDonation()">Submit</button>
         </div>
       </div>
 
@@ -151,58 +150,18 @@
         pic.setAttribute("src", img);
     }
 
-    function createDonation() {
-        console.log("AAAAAAAA");
-        var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance 
-        xmlhttp.open("POST", "http://localhost:3000/donations");
-        xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-        xmlhttp.send(JSON.stringify({ email: "hello@user.com", response: { name: "Tester" } }));
-    }
-
-    /**
-     * Make a X-Domain request to url and callback.
-     *
-     * @param url {String}
-     * @param method {String} HTTP verb ('GET', 'POST', 'DELETE', etc.)
-     * @param data {String} request body
-     * @param callback {Function} to callback on completion
-     * @param errback {Function} to callback on error
-     */
-    function xdr(data, callback, errback) {
-      console.log("xdr");
-      let url = "http://localhost:3000/donations";
-      let method = "POST";
-        var req;
-        
-        if(XMLHttpRequest) {
-            req = new XMLHttpRequest();
-
-            if('withCredentials' in req) {
-                req.open(method, url, true);
-                req.onerror = errback;
-                req.onreadystatechange = function() {
-                    if (req.readyState === 4) {
-                        if (req.status >= 200 && req.status < 400) {
-                            callback(req.responseText);
-                        } else {
-                            errback(new Error('Response returned with non-OK status'));
-                        }
-                    }
-                };
-                req.send(data);
+    $('#donate').submit(function(e){
+        e.preventDefault();
+        $.ajax({
+            url:'http://localhost:3000/donations',
+            type:'post',
+            data:$('#donate').serialize(),
+            success:function(){
+                window.location.href = "thankyou.html";
             }
-        } else if(XDomainRequest) {
-            req = new XDomainRequest();
-            req.open(method, url);
-            req.onerror = errback;
-            req.onload = function() {
-                callback(req.responseText);
-            };
-            req.send(data);
-        } else {
-            errback(new Error('CORS not supported'));
-        }
-    }
+        });
+    });
+
     </script>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
